@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "JosefinSans-Bold", sans-serif;
+}
+
+.header {
+  height: 10vh;
+  background: black;
+  padding: 0 20px;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.logo-main {
+  display: flex;
+  height: 10vh;
+  width: 90px;
+  align-items: center;
+  float: left;
+  color: var(--main-color)
+}
+
+.logo-main span {
+  font-size: 21px;
+  color: #fff;
+  margin-left: 7px;
+}
+
+.logo-main p {
+  font-family: "JosefinSans-Regular", sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.menu {
+  float: right;
+  line-height: 10vh;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0 10px;
+  transition: .4s;
+  position: relative;
+}
+
+.menu a::before {
+  content: '';
+  bottom: -4px;
+  right: 0;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: var(--main-color);
+  transition: .4s;
+}
+
+.show-menu-btn,
+.hide-menu-btn {
+  transition: .4s;
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+}
+
+.show-menu-btn {
+  float: right;
+  line-height: 10vh;
+}
+
+.show-menu-btn fa-icon {
+  transition: .4s;
+}
+
+.menu a:hover,
+.show-menu-btn fa-icon:hover,
+.hide-menu-btn:hover {
+  color: var(--main-color);
+}
+
+.menu a:hover:before {
+  width: 100%;
+  left: 0;
+}
+
+#chk {
+  position: absolute;
+  visibility: hidden;
+  z-index: -1;
+}
+
+.content {
+  padding: 0 20px;
+}
+
+.content p {
+  text-align: justify;
+}
+
+fa-icon {
+  cursor: pointer;
+}
+
+@media screen and (max-width:800px) {
+
+  .show-menu-btn,
+  .hide-menu-btn {
+    display: block;
+  }
+
+  .menu {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #333;
+    right: -100%;
+    top: 0;
+    text-align: center;
+    padding: 80px 0;
+    line-height: normal;
+    transition: .7s;
+  }
+
+  .menu a {
+    display: block;
+    padding: 20px;
+  }
+
+  .hide-menu-btn {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+
+  #chk:checked~.menu {
+    right: 0;
+    z-index: 999;
+  }
+}

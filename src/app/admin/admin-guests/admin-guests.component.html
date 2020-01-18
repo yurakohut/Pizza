@@ -1,0 +1,109 @@
+<div class="container">
+
+  <div class="containerText">
+    <h3>What do you want to show?</h3>
+    <input type="text" [(ngModel)]="anotherType" name="anotherType"
+      class="form-control col-12 col-sm-6 col-lg-4 col-xl-2 mr-2 anotherType" placeholder="Type here">
+    <button mat-raised-button color="accent" [disabled]="!anotherType" (click)="setType()"
+      class="col-12 col-sm-6 col-lg-4 col-xl-2">
+      Set</button>
+  </div>
+
+  <div class="addButton">
+    <button mat-raised-button color="primary" (click)="openGuestModal(guestModal)"
+      class="col-12 col-sm-6 col-lg-4 col-xl-2">Add
+      {{showButtonType}}</button>
+  </div>
+
+  <ng-template #guestModal>
+    <div class="modal-body text-center">
+      <form>
+        <div class="form-group">
+          <label for="guestName">Name</label>
+          <input [(ngModel)]="guestName" name="guestName" type="text" class="form-control" id="guestName">
+        </div>
+        <div class="form-group" *ngIf="guestName">
+          <label for="guestQuote">Quote</label>
+          <br>
+          <textarea class="form-control" [(ngModel)]="guestQuote" name="guestQuote" placeholder="not necessary"
+            id="guestQuote" rows="3"></textarea>
+        </div>
+        <div class="form-group" *ngIf="guestName">
+          <label for="guestInfo">More info</label>
+          <input [(ngModel)]="guestInfo" name="guestInfo" type="text" class="form-control" placeholder="not necessary"
+            id="guestInfo">
+        </div>
+        <div class="form-group" *ngIf="guestName">
+          <label for="guestFile">Image</label>
+          <div class="custom-file">
+            <input type="file" class="form-control" (change)="upload($event)" accept=".png,.jpg" id="guestFile" />
+            <label class="custom-file-label" for="guestFile">Choose file..</label>
+            <br>
+            <div class="progress">
+              <div *ngIf="progress" class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br>
+            <div *ngIf="addGuestPhotoCheck">
+              <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+                File uploaded: <a [href]="downloadSrc" target="_blank">{{downloadSrc}}</a>
+                <div> <img src="{{guestPhoto}}" alt="guest image"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="buttons">
+          <div class="setButtons">
+            <button *ngIf="guestPhoto && guestName" type="button" class="btn btn-success mr-2"
+              (click)="setData()">Add</button>
+            <button type="button" class="btn btn-dark" (click)="cancelData()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <table class="table table-hover table-bordered table-responsive">
+    <thead class="thead-light">
+      <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col" class="col-md-6">Quote</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Details</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let guest of guests; let i=index" class="text-center">
+        <th scope="row" class="align-middle">
+          {{i+1}}
+        </th>
+        <td class="align-middle">
+          {{guest.name}}
+        </td>
+        <td class="align-middle">
+          {{guest.quote}}
+        </td>
+        <td class="align-middle">
+          <img src="{{guest.photo}}" alt="Guest photo">
+        </td>
+        <td class="align-middle">
+          {{guest.details}}
+        </td>
+        <td class="align-middle">
+          <button mat-raised-button color="warn" (click)="deleteData(guest, warningModal)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #warningModal>
+    <div class="modal-body text-center">
+      <p class="mb-2">Do you want to delete this guest? ({{deleteGuest.name}})</p>
+      <button mat-raised-button class="btn btn-danger mr-2" (click)="confirmDeleteGuest()">Yes</button>
+      <button mat-raised-button class="btn btn-primary" (click)="decline()">No</button>
+    </div>
+  </ng-template>
+
+  <simple-notifications [options]="options"></simple-notifications>

@@ -1,0 +1,52 @@
+  <div class="menu ">
+    <div class="menu-text container">
+      <div class="categories row justify-content-around">
+        <button matRipple type="button" class="col-8 col-sm-6 col-lg-4 col-xl-2"
+          [ngClass]="{active: isActive(category.name)}" (click)="selectCategory(category.name)"
+          *ngFor="let category of categories; let i=index" [routerLink]="['/menu', category.name]">
+          {{category.name}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="products container">
+    <div class="card" style="width: 320px;"
+      *ngFor="let product of filterProducts | paginate: {itemsPerPage:productPerPage,currentPage:page}; let i=index">
+      <img src="{{product.image}}" class="card-img-top" alt="product">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text description">{{product.description}}</p>
+        <div class="order">
+          <span class="card-text">₴<span class="price">{{product.price * product.count}}</span></span>
+          <div><button mat-raised-button matRipple class="my-ripple-container" class="btn btn-primary mr-2"
+              [routerLink]="['/menu', product.category, product.name]"
+              *ngIf="product.category === 'pizza' && product.size || product.weight">More</button>
+            <button mat-raised-button class="btn btn-dark" (click)="orderInLocalST(product, orderModal)"
+              matRipple>Order</button>
+          </div>
+        </div>
+        <span class="countProduct">
+          <button type="button" (click)="countProductsInc(product)">+</button>
+          <input type="text" [value]='product.count' maxlength="3" (keyup)='checkCountProduct($event, product)'>
+          <button type="button" (click)="countProductsDec(product)">-</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <app-paginator (click)="scrollUp()" *ngIf="checkPaginator">
+
+  </app-paginator>
+  <simple-notifications [options]="options"></simple-notifications>
+
+  <ng-template #orderModal>
+    <div class="modal-body text-center">
+      <p class="mb-2">
+        Product successfully ordered. Do you want to go to the basket?
+      </p>
+      <button mat-raised-button color="warn" class="mr-2" [routerLink]="['/basket']"
+        (click)="closeWindow()">Yes</button>
+      <button mat-raised-button color="primary" (click)="closeWindow()">No</button>
+      <div class="mt-2">
+        <mat-checkbox [(ngModel)]="isActiveCheckBox">Don't show this message anymore</mat-checkbox>
+      </div>
+    </div>
+  </ng-template>

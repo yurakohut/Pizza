@@ -1,0 +1,67 @@
+<div class="userBlog">
+  <main class="main">
+
+    <form class="formContainer" [formGroup]='form'>
+      <div [@flip]=flipState class="{{title}}">
+        <h1>{{title}}</h1>
+        <div *ngIf="signUpOrLogInCheck">
+          <input type="email" placeholder="Email" formControlName="email" (input)='existingEmail = false'>
+          <div class="validation">
+            <div>
+              <small *ngIf='form.get("email").invalid && form.get("email").touched'>Invalid email </small>
+              <small *ngIf='existingEmail' class="existedSmall">This email is already
+                existed</small>
+            </div>
+          </div>
+        </div>
+        <input type="text" placeholder="Username" formControlName="username" [@shake]="userNameState"
+          (input)='existingName = false'>
+        <div class="validation">
+          <div *ngIf='form.get("username").invalid && form.get("username").touched && title === "Sign Up"'>
+            <small *ngIf='form.get("username").errors.required'>Invalid username </small>
+            <small *ngIf='form.get("username").errors.minlength'>Min
+              symbols {{form.get("username").errors.minlength.requiredLength}}</small>
+          </div>
+          <small *ngIf='existingName' class="existedSmall">This name is already existed</small>
+        </div>
+        <input type="password" placeholder="Password" formControlName="password" [@shake]="userPasswordState">
+        <div class="validation">
+          <div *ngIf='form.get("password").invalid && form.get("password").touched && title === "Sign Up"'>
+            <small *ngIf='form.get("password").errors.minlength'>Min
+              symbols {{form.get("password").errors.minlength.requiredLength}}
+            </small>
+            <small *ngIf='form.get("password").errors.required'>Invalid password</small>
+          </div>
+          <small *ngIf='wrongData && title === "Log In"' class="wrongData">Invalid
+            password or username
+          </small>
+        </div>
+
+        <div class="signUp" *ngIf="signUpOrLogInCheck">
+          <button type="button" class="btn btn-primary" (click)="signUp()" [disabled]='form.invalid'>Sign Up</button>
+          <p>Have an account?<a role="button" tabindex="0" (click)="checkLog()"> Log in</a></p>
+        </div>
+        <div class="logIn" *ngIf="!signUpOrLogInCheck">
+          <button type="button" class="btn btn-success" (click)="logIn(warningModal)">Log in</button>
+          <p>Don't have an account?<a role="button" tabindex="0" (click)="checkLog()"> Sign Up</a></p>
+        </div>
+      </div>
+    </form>
+  </main>
+  <footer>
+    <div class="waveEffect">
+      <div class="wave"></div>
+    </div>
+  </footer>
+</div>
+
+<ng-template #warningModal >
+  <div class="modal-body text-center ">
+    <h6>You have been blocked. You can't send messages, but you can read messages from other users.
+    </h6>
+    <p class="mb-2" *ngIf="reasonForBlock">
+      Reason for blocking: {{reasonForBlock}}
+    </p>
+    <button mat-raised-button color="primary" class="mt-2" (click)="closeWindow()">Ok</button>
+  </div>
+</ng-template>

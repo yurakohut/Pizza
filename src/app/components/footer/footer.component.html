@@ -1,0 +1,70 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-fl">
+      <div class="footer-social">
+        <div class="social-fl">
+          <div class="social-twitter">
+            <a href="https://twitter.com/?lang=uk" target="_blank">
+              <i class="fab fa-twitter-square fa-3x"></i>
+            </a>
+          </div>
+          <div class="social-facebook">
+            <a href="https://www.facebook.com/" target="_blank">
+              <i class="fab fa-facebook-square fa-3x"></i>
+            </a>
+          </div>
+          <div class="social-instagram">
+            <a href="https://www.instagram.com/?hl=uk" target="_blank">
+              <i class="fab fa-instagram fa-3x"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+      <div class="footer-menu">
+        <ul>
+          <li><a [routerLink]="['/home']">Home</a> </li>
+          <li><a [routerLink]="['/menu/pizza']">Menu</a></li>
+          <li><a [routerLink]="['/feedback']">Blogs</a></li>
+          <li><a [routerLink]="['/about']">About</a></li>
+          <li><a [routerLink]="['/contacts']">Contacts</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+
+        <div class="contacts-info contacts-info-fl">
+          <div class="contacts-info-number">
+            <div class="number-icon icon">
+              <fa-icon [icon]="faPhoneAlt"></fa-icon>
+            </div>
+            <div class="number-text">
+              <p>+380682292861</p>
+              <span>A small river named Duden flows</span>
+            </div>
+          </div>
+          <div class="contacts-info-location">
+            <div class="location-icon icon">
+              <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+            </div>
+            <div class="location-text">
+              <p> 198 West 21th Street</p>
+              <span> New York, USA</span>
+            </div>
+          </div>
+          <div class="contacts-info-time">
+            <div class="time-icon icon">
+              <fa-icon [icon]="faClock"></fa-icon>
+            </div>
+            <div class="time-text">
+              <p>Open Monday-Friday</p>
+              <span>8:00am - 9:00pm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copy">
+    <p>Copyright ©2019 All rights reserved</p>
+  </div>
+</footer>

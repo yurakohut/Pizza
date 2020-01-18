@@ -1,0 +1,23 @@
+  <div class="sliderContainer">
+    <div class="container">
+      <div class="guestText">
+        <h1>Our {{mainTypeHTML}}</h1>
+      </div>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let guest of guests.reverse(); let i=index">
+            <div class="sliderCard">
+              <div class="sliderPhoto">
+                <img src="{{guest.photo}}" alt="guest photo">
+              </div>
+              <div class="content">
+                <h5>{{guest.name}}</h5>
+                <p *ngIf="guest.quote">"{{guest?.quote}}"</p>
+                <a *ngIf="guest.details" href="{{guest?.details}}" target="_blank">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

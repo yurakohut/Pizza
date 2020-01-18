@@ -1,0 +1,43 @@
+<div class="form-group">
+  <input [(ngModel)]="search" name="search" type="text" class="form-control" placeholder="Search.." id="search">
+</div>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let post of posts.sort(sortArray)  | filter:search; trackBy: trackByPackId;"
+    class="mb-2">
+    <mat-expansion-panel-header class="expansion-panel">
+      <mat-panel-title class="panelTitle">
+        <div class="cardHeader">
+          <p><span class="postUsername">{{post.writtenBy.username}}</span>
+            <span class="chipList">
+              <mat-chip-list class="chipList">
+                <mat-chip color="warn" (click)="blockModalUser(blockModal,post.writtenBy)" selected>Block
+                </mat-chip>
+              </mat-chip-list>
+            </span>
+          </p>
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <hr>
+    <div>{{post.text}}</div>
+  </mat-expansion-panel>
+</mat-accordion>
+<simple-notifications [options]="options"></simple-notifications>
+
+<ng-template #blockModal>
+  <div class="modal-body text-center">
+    <form>
+      <div class="form-group">
+        <label for="userReasonBlock">Reason:</label>
+        <textarea rows="5" [(ngModel)]="userReasonBlock" name="userReasonBlock" class="form-control"
+          id="userReasonBlock" placeholder="not necessarily
+          "></textarea>
+        <p>Warning: all messages from this user will be deleted
+        </p>
+      </div>
+    </form>
+    <button mat-raised-button color="warn" class="mr-2" (click)="confirmBlockUser()">Block</button>
+    <button mat-raised-button color="primary" (click)="closeWindow()">Cancel</button>
+  </div>
+</ng-template>

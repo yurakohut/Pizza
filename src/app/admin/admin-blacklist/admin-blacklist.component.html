@@ -1,0 +1,33 @@
+<div class="form-group">
+  <input [(ngModel)]="search" name="search" type="text" class="form-control" placeholder="Search.." id="search">
+</div>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let user of blockedUsers | filter:search; trackBy: trackByPackId;" class="mb-2">
+    <mat-expansion-panel-header class="expansion-panel">
+      <mat-panel-title class="panelTitle">
+        <div class="cardHeader">
+          <p><span class="postUsername">{{user.username}}</span>
+            <span class="chipList">
+              <mat-chip-list class="chipList">
+                <mat-chip color="primary" (click)="unblockModalUser(unblockModal,user)" selected>Unblock
+                </mat-chip>
+              </mat-chip-list>
+            </span>
+          </p>
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div *ngIf="user.blacklist.reason">Reason: {{user.blacklist.reason}}</div>
+    <div *ngIf="!user.blacklist.reason">Reason: not specified</div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<ng-template #unblockModal>
+  <div class="modal-body text-center">
+    <p class="mb-2">Do you want to unblock this user: {{blackListUser.username}}?</p>
+    <button mat-raised-button color="warn" class="mr-2" (click)="confirmUnblockUser()">Unblock</button>
+    <button mat-raised-button color="primary" (click)="closeWindow()">Cancel</button>
+  </div>
+</ng-template>
+
+<simple-notifications [options]="options"></simple-notifications>

@@ -1,0 +1,76 @@
+<div class="homeBlog">
+  <header>
+    <div class="container header-nav">
+      <div class="d-flex align-items-center">
+        <h5>{{userName}}</h5>
+        <fa-icon *ngIf="!possibilityToCreate"
+          matTooltip="You have been blocked. You can't send messages, but you can read messages from other users. Reason: {{reasonForBlock}}"
+          matTooltipClass="example-tooltip-red" class="example-button" [icon]="faExclamationCircle"
+          class="fa-2x ml-3 text-danger">
+        </fa-icon>
+      </div>
+
+      <div>
+        <fa-icon *ngIf="possibilityToCreate" matRipple [icon]="faPlus" class="fa-2x" (click)="openModal(PostModal)">
+        </fa-icon>
+        <fa-icon [icon]="faSignOutAlt" matRipple class="fa-2x ml-3" (click)="logOut()"></fa-icon>
+      </div>
+    </div>
+  </header>
+  <div class="container content">
+    <div class="userPost" *ngFor="let post of posts.sort(sortArray); trackBy: trackByPackId; let i=index"
+      data-aos="zoom-in-down" data-aos-duration="500">
+      <div class="dateAndUser mt-2 mb-2">
+        <p class="mb-1">
+          <fa-icon [icon]="faPen" class="mr-1"></fa-icon> {{post.writtenBy.username}}
+        </p>
+        <p>
+          <fa-icon [icon]="faClock" class="mr-1"></fa-icon>
+          {{ post.date | date: 'dd/MM/yy, H:mm'}}
+        </p>
+      </div>
+      <p class="mb-3 mt-3 userPostText">{{post.text}}
+      </p>
+      <div *ngIf="userName === post.writtenBy.username">
+        <button type="button" class="btn btn-warning mr-2" (click)="editPost(PostModal, post)">Edit</button>
+        <button type="button" class="btn btn-danger" (click)="deletePost(deletePostModal, post)">Delete</button>
+      </div>
+      <div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Post Modal -->
+<ng-template #PostModal>
+  <div class="modal-body text-center">
+    <form>
+      <div class="form-group">
+        <label for="userPostText">Text</label>
+        <textarea rows="5" [(ngModel)]="userPostText" name="userPostText" class="form-control"
+          id="userPostText"></textarea>
+      </div>
+    </form>
+    <div class="buttons">
+      <button mat-raised-button color="primary" class="mr-2" [disabled]="!userPostText"
+        (click)="addPost()">{{postButtonName}}</button>
+      <button mat-raised-button color="warn" (click)="decline()">Cancel</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #deletePostModal>
+  <div class="modal-body text-center">
+    <p class="mb-2">Do you want to delete post?</p>
+    <button mat-raised-button color="warn" class="mr-2" (click)="confirmDeletePost()">Yes</button>
+    <button mat-raised-button color="primary" (click)="decline()">No</button>
+  </div>
+</ng-template>
+
+<ng-template #warningModal>
+  <div class="modal-body text-center">
+    <p class="mb-2">Do you want to delete post?</p>
+    <button mat-raised-button color="warn" class="mr-2" (click)="confirmDeletePost()">Yes</button>
+    <button mat-raised-button color="primary" (click)="decline()">No</button>
+  </div>
+</ng-template>

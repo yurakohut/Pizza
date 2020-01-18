@@ -1,0 +1,42 @@
+.panelTitle {
+  width: 60%;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chipList {
+  display: inline-block;
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.panelTitle {
+  width: 60%;
+  position: relative;
+  height: 48px;
+  line-height: 48px;
+}
+
+mat-panel-description>span {
+  line-height: 48px;
+}
+
+label {
+  float: left;
+  text-align: left;
+}
+
+form p {
+  margin-top: 5px;
+  text-align: left;
+  font-style: italic;
+}
+
+mat-chip {
+  cursor: pointer;
+}

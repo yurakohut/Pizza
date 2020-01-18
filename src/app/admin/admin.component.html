@@ -1,0 +1,23 @@
+<div class="admin">
+  <div class="container-fluid mt-2">
+    <div class="row justify-content-center">
+      <div class="col-xs-12 col-sm-5 col-lg-3 adminLinkBlock">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link  adminLink" routerLink="categories" routerLinkActive="activeAdminLink">Categories</a>
+          <a class="nav-link adminLink" [routerLink]="['products/pizza']"
+            routerLinkActive="activeAdminLink">Products</a>
+          <a class="nav-link adminLink" routerLink="orders" routerLinkActive="activeAdminLink">Orders</a>
+          <a class="nav-link adminLink" routerLink="guests" routerLinkActive="activeAdminLink">Guests</a>
+          <a class="nav-link adminLink" routerLink="feedback" routerLinkActive="activeAdminLink">Feedback</a>
+          <a class="nav-link adminLink" routerLink="blacklist" routerLinkActive="activeAdminLink">Blacklist</a>
+          <a class="nav-link adminLink" routerLink="archive" routerLinkActive="activeAdminLink">Archive</a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-lg-9">
+        <div class="tab-content" id="v-pills-tabContent">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

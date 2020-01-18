@@ -1,0 +1,102 @@
+.container {
+  margin: 50px 0;
+}
+
+.guestText {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.guestText h1 {
+  color: var(--main-color);
+  font-family: "NothingYouCouldDo", sans-serif;
+}
+
+.sliderContainer {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("/assets/images/service-bg2.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: "Poppins-Regular", sans-serif;
+}
+
+.sliderCard {
+  position: relative;
+  background: var(--main-color);
+  width: 320px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+.sliderCard .content {
+  width: 320px;
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.content .textBlockquote {
+  max-height: 72px;
+  overflow-y: auto;
+}
+
+.sliderCard .content a {
+  display: inline-block;
+  margin: 10px 0 0;
+  padding: 7px 10px;
+  text-decoration: none;
+  border: 2px solid #262626;
+  color: #262626;
+  font-weight: 600;
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sliderCard .content h5 {
+  font-family: "JosefinSans-Regular", sans-serif;
+}
+
+.sliderCard .content blockquote {
+  font-family: "Poppins-Italic", sans-serif;
+}
+
+
+.sliderCard .sliderPhoto {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: #000;
+}
+
+.sliderCard .sliderPhoto img {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  width: 320px;
+}
+
+
+#scroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #dfa53c;
+}
+
+#scroll::-webkit-scrollbar {
+  width: 5px;
+  background-color: #F5F5F5;
+}
+
+#scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background: #D62929 !important;
+}

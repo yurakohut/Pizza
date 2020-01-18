@@ -1,0 +1,94 @@
+.my-pagination::ng-deep .ngx-pagination {
+  margin: 0;
+  display: flex;
+}
+
+.my-pagination::ng-deep .ngx-pagination .current {
+  background: var(--main-color);
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-pagination::ng-deep .ngx-pagination li,
+.my-pagination::ng-deep .ngx-pagination .current,
+.my-pagination::ng-deep .ngx-pagination .pagination-previous,
+.my-pagination::ng-deep .ngx-pagination .pagination-next {
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--main-color);
+
+}
+
+.my-pagination::ng-deep .ngx-pagination .pagination-previous,
+.my-pagination::ng-deep .ngx-pagination .pagination-next {
+  color: var(--main-color);
+  position: relative;
+  padding: 0;
+}
+
+.my-pagination::ng-deep .ngx-pagination .pagination-previous::before,
+.my-pagination::ng-deep .ngx-pagination .pagination-previous a::before,
+.my-pagination::ng-deep.ngx-pagination .pagination-next a::after,
+.my-pagination::ng-deep .ngx-pagination .pagination-next.disabled::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 6px solid transparent;
+}
+
+
+
+.my-pagination::ng-deep .ngx-pagination .pagination-previous::before,
+.my-pagination::ng-deep .ngx-pagination .pagination-previous a::before {
+  transform: translate(-75%, -50%);
+  border-right: 6px solid var(--main-color);
+}
+
+.my-pagination::ng-deep .ngx-pagination li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-pagination::ng-deep ul {
+  padding: 0;
+}
+
+.my-pagination::ng-deep .ngx-pagination .small-screen li {
+  display: none;
+}
+
+
+.my-pagination::ng-deep .ngx-pagination .pagination-next.disabled::after,
+.my-pagination::ng-deep.ngx-pagination .pagination-next a::after {
+  border-left: 6px solid var(--main-color);
+  transform: translate(-100%, -50%);
+}
+
+.my-pagination::ng-deep .ngx-pagination .small-screen {
+  display: none;
+}
+
+.my-pagination::ng-deep.ngx-pagination a {
+  padding: 12px 22px;
+  text-decoration: none;
+  color: var(--main-color)
+}
+
+.my-pagination::ng-deep.ngx-pagination a:hover {
+  color: black
+}
+
+.my-pagination::ng-deep.pagination-next a,
+.my-pagination::ng-deep.pagination-previous a {
+  padding: 24px;
+}
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0;
+}

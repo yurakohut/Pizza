@@ -1,0 +1,23 @@
+<div class="productDetails">
+  <div class="card mb-3" style="width: 90%; max-width: 500px;" *ngFor="let product of oneProduct; let i=index">
+    <img src="{{product.image}}" class="card-img" alt="{{product.name}}">
+    <div class="card-body">
+      <ul>
+        <li class="card-title">
+          <span class="name">{{product.name}}</span>
+          <span class="price">{{product.price | currency: 'UAH':'symbol-narrow':'1.0'}} </span>
+        </li>
+        <li class="card-text">
+          <span class="description">{{product.description}}</span>
+        </li>
+        <li class="card-text" *ngIf="product.size">
+          <img src="assets/images/size.png" alt="size"><span> {{product.size}} inc</span>
+        </li>
+        <li class="card-text" *ngIf="product.weight">
+          <img src="assets/images/scale.png" alt="weight"><span> {{product.weight}} gr</span>
+        </li>
+        <li><button mat-raised-button color='primary' (click)="goBack()">Back</button></li>
+      </ul>
+    </div>
+  </div>
+</div>

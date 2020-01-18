@@ -1,0 +1,78 @@
+img {
+  width: 150px;
+  height: 100px;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+th,
+tr {
+  color: white
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container button {
+  font-family: "Poppins-Regular", serif;
+  padding: 0.5rem 1rem;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+form button {
+  margin-top: 30px;
+}
+
+.anotherButtons {
+  margin-top: 50px;
+}
+
+.anotherButtons button {
+  background: none;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  outline: none;
+  transition: .6s all;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 10px;
+}
+
+.anotherButtons button:hover,
+.anotherButtons .active {
+  background: var(--main-color);
+  color: black;
+}
+
+.custom-file label,
+input {
+  height: 100%;
+}
+
+label {
+  float: left;
+  text-align: left;
+}
+
+.alert-info {
+  text-align: left;
+}
+
+.setButtons {
+  margin-top: 30px;
+}
+
+.modal-body p {
+  color: black;
+}
+
+.notifications {
+  position: relative;
+  z-index: 9999;
+}

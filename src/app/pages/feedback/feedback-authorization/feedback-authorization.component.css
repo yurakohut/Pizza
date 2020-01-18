@@ -1,0 +1,197 @@
+.userBlog {
+  margin-top: 10vh;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Poppins-Regular', sans-serif;
+  position: relative;
+  background: black;
+}
+
+.formContainer {
+  width: 320px;
+  padding: 40px;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+}
+
+.formContainer h1 {
+  color: white;
+  font-weight: 500;
+  font-family: "NothingYouCouldDo";
+  margin-bottom: 15px;
+}
+
+.formContainer input[type="text"],
+.formContainer input[type="password"],
+.formContainer input[type="email"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid #ecb70b;
+  padding: 10px 10px;
+  width: 200px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+.formContainer input[type="text"]:focus,
+.formContainer input[type="password"]:focus,
+.formContainer input[type="email"]:focus {
+  width: 210px;
+  border-color: #fa6e00;
+}
+
+
+
+.formContainer button {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto 10px;
+  text-align: center;
+  padding: 10px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+.logIn button {
+  border: 2px solid #2ecc71;
+}
+
+.signUp button {
+  border: 2px solid #3421e0;
+}
+
+.formContainer a {
+  cursor: pointer;
+}
+
+.formContainer p {
+  color: white;
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.signUp,
+.logIn,
+.formContainer h1 {
+  text-align: center;
+}
+
+.logIn button:hover {
+  background: #2ecc71;
+  cursor: pointer;
+}
+
+.signUp button:hover:enabled {
+  background: #3421e0;
+  cursor: pointer;
+}
+
+.validation {
+  text-align: left;
+  color: red;
+  margin-bottom: 19px;
+  position: relative;
+}
+
+small {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 40px;
+}
+
+.existedSmall,
+.wrongData {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-left: 0;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  height: 150px;
+}
+
+.waveEffect {
+  position: relative;
+  width: 100%;
+  height: 150px;
+}
+
+.waveEffect .wave,
+.waveEffect .wave:before,
+.waveEffect .wave:after {
+  position: absolute;
+  width: 100%;
+  height: 143px;
+  left: 0;
+  background: url("/assets/images/wave.png");
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+.waveEffect .wave {
+  bottom: 0;
+  animation: animate 10s linear infinite;
+}
+
+.waveEffect .wave:before,
+.waveEffect .wave:after {
+  content: '';
+  top: 0;
+}
+
+.waveEffect .wave:before {
+  opacity: .4;
+  animation: animate-reverse 10s linear infinite;
+}
+
+.waveEffect .wave:after {
+  opacity: .6;
+  animation-delay: -5s;
+  animation: animate-reverse 20s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0;
+  }
+
+  100% {
+    background-position: 1360px;
+  }
+}
+
+@keyframes animate-reverse {
+  0% {
+    background-position: 1360px;
+  }
+
+  100% {
+    background-position: 0;
+  }
+}
+
+.Sign input.ng-touched.ng-invalid {
+  border: 2px solid red !important
+}
+
+@media screen and (max-width:960px) {
+  .waveEffect {
+    display: none;
+  }
+}

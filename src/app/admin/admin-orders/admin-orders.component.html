@@ -1,0 +1,137 @@
+<div class="container">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let order of orders.sort(sortArray);  trackBy: trackByPackId;" class="mb-2">
+      <mat-expansion-panel-header class="expansion-panel">
+        <mat-panel-title class="panelTitle">
+          <div class="cardHeader">
+            <p>{{order.number}}<span class="orderName">{{order.name}}</span>
+              <mat-chip-list class="chipList">
+                <mat-chip *ngIf="order.isNew" color="primary" selected (click)="changeOrderState(order)">new</mat-chip>
+              </mat-chip-list>
+            </p>
+          </div>
+        </mat-panel-title>
+        <mat-panel-description>
+          <span>{{order.date | date: 'dd/MM/yy, H:mm'}}</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <hr>
+      <p class="card-text"><span class="textBold">Adress:</span> {{order.adress}} <fa-icon [icon]="faUserEdit"
+          class="ml-2 userEdit" (click)="editUserModal(editUser, order)"></fa-icon>
+      </p>
+      <hr>
+      <div class="orderDescription" *ngFor="let product of order.product; let i=index">
+        <div class="orderDescription-flex">
+          <ul>
+            <li><span class="textBold">Category:</span> {{product.category}}</li>
+            <li><span class="textBold">Name:</span> {{product.name}}</li>
+            <li><span class="textBold">Count:</span> {{product.count}}</li>
+            <li><span class="textBold">Price:</span> {{product.price * product.count}}грн </li>
+          </ul>
+          <div class="orderButtons">
+            <fa-icon [icon]="faTimes" class="fa-2x deleteProduct"
+              (click)="cancelOrderModal(deleteProductModal,order,product)">
+            </fa-icon>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <h4 class="orderSum">Together: {{orderSum(order.product)}} грн</h4>
+      <button mat-raised-button (click)="addProductModal(productModal, order)" class="btn btn-success  mr-2">Add
+        product</button>
+      <button mat-raised-button (click)="cancelOrderModal(deleteOrderModal, order)" class="btn btn-danger">Cancel order
+      </button>
+      <button mat-raised-button (click)="deliveredOrder(order)" class="btn btn-primary ml-2">Order delivered
+      </button>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!-- Delete Product Modal -->
+  <ng-template #deleteProductModal>
+    <div class="modal-body text-center">
+      <p class="mb-2">Do you want to delete product?</p>
+      <button mat-raised-button color="warn" class="mr-2" (click)="confirmDeleteProduct()">Yes</button>
+      <button mat-raised-button color="primary" (click)="decline()">No</button>
+    </div>
+  </ng-template>
+
+  <!-- Delete order Modal -->
+  <br><br>
+  <ng-template #deleteOrderModal>
+    <div class="modal-body text-center">
+      <p class="mb-2">Do you want to delete order?</p>
+      <button mat-raised-button color="warn" class="mr-2" (click)="confirmDeleteOrder()">Yes</button>
+      <button mat-raised-button color="primary" (click)="decline()">No</button>
+    </div>
+  </ng-template>
+
+  <!-- Edit user Modal -->
+  <ng-template #editUser>
+    <div class="modal-header ">
+      <h4 class="modal-title pull-left">Edit user</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group editUserModalCss">
+          <label for="name">Name</label>
+          <input [(ngModel)]="regForm.name" name="name" #userName="ngModel" type="text" class="form-control" id="name"
+            required pattern="[a-zA-Z\s]{2,}">
+        </div>
+        <div class="form-group editUserModalCss">
+          <label for="adress">Adress</label>
+          <input [(ngModel)]="regForm.adress" name="adress" #userAdress="ngModel" type="text" class="form-control"
+            id="adress" required pattern="[a-zA-Z0-9,\.\s\\/]{6,}">
+        </div>
+        <button [disabled]="userName.invalid || userAdress.invalid" type="button" class="btn btn-success mr-2"
+          (click)="updateUserData()">Save</button>
+        <button type="button" class="btn btn-dark" (click)="decline()">Cancel</button>
+      </form>
+    </div>
+  </ng-template>
+
+  <!-- Add product Modal -->
+  <ng-template #productModal>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add product</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="name">Category</label>
+          <select (change)="filterCategory()" class="form-control" id="productCategory" [(ngModel)]="productCategory"
+            name="productCategory">
+            <option value="" selected disabled hidden>Choose here</option>
+            <option *ngFor="let category of categories; let i = index">{{category?.name}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group" *ngIf="productCategory">
+          <label for="name">Name</label>
+          <select class="form-control" id="productName" [(ngModel)]="productName" name="productName">
+            <option value="" selected disabled hidden>Choose here</option>
+            <option *ngFor="let newProduct of filterProducts; let i = index">{{newProduct?.name}}</option>
+          </select>
+        </div>
+        <div class="form-group" *ngIf="productName">
+          <label for="name">Count</label>
+          <input type="number" [(ngModel)]="productCount" name="productCount" min="0" class="countInput" maxlength="3">
+        </div>
+        <button *ngIf="productCount && productCount>0" type="button" class="btn btn-success mr-2"
+          (click)="addProduct()">Save</button>
+        <button type="button" class="btn btn-dark" (click)="decline()">Cancel</button>
+      </form>
+    </div>
+  </ng-template>
+</div>
+
+<div class="warningMessage">
+  <h3>Doesn't work on this extension</h3>
+</div>
+
+<simple-notifications [options]="options"></simple-notifications>

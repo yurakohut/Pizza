@@ -1,0 +1,43 @@
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <div class="logo-main" [routerLink]="['/home']">
+        <div class="logo-main-fl">
+          <h5>
+            <fa-icon [icon]="faPizzaSlice"></fa-icon><span>Pizza</span>
+          </h5>
+          <div>
+            <p>delicious</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="checkbox" id="chk" [checked]="menuCheck" (click)="menuCheck = !menuCheck">
+
+    <label for="chk" class="show-menu-btn ml-3">
+      <fa-icon [icon]="faBars"></fa-icon>
+    </label>
+    <label class="show-menu-btn">
+      <mat-icon [matBadge]="orderCount" matBadgeColor="warn" [matBadgeHidden]="orderCount===0">
+        <fa-icon [icon]="faShoppingBasket" [routerLink]="['/basket']"></fa-icon>
+      </mat-icon>
+
+    </label>
+    <ul class="menu" (click)="menuCheck = !menuCheck">
+      <a [routerLink]="['/home']">Home</a>
+      <a [routerLink]="['/menu/pizza']">Menu</a>
+      <a [routerLink]="['/feedback']">Feedback</a>
+      <a [routerLink]="['/contacts']">Contacts</a>
+      <a [routerLink]="['/admin']">Admin</a>
+      <a>
+        <mat-icon [matBadge]="orderCount" matBadgeColor="warn" [matBadgeHidden]="orderCount===0">
+          <fa-icon [icon]=" faShoppingBasket" [routerLink]="['/basket']">
+          </fa-icon>
+        </mat-icon>
+      </a>
+      <label for="chk" class="hide-menu-btn">
+        <fa-icon [icon]="faTimes"></fa-icon>
+      </label>
+    </ul>
+  </div>
+</header>

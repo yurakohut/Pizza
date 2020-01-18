@@ -1,0 +1,8 @@
+  <app-header></app-header>
+  <main>
+    <div ngxUiLoaderBlurred blur='10'>
+      <router-outlet (activate)='onActivate($event)'></router-outlet>
+    </div>
+    <ngx-ui-loader id="loading-bar-spinner"></ngx-ui-loader>
+  </main>
+  <app-footer></app-footer>

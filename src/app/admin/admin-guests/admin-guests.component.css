@@ -1,0 +1,54 @@
+.container {
+  min-height: 100vh;
+}
+
+table img,
+form img {
+  width: 150px;
+  height: 100px;
+}
+
+table {
+  color: white;
+}
+
+.addButton {
+  margin-bottom: 40px;
+}
+
+label {
+  float: left;
+  text-align: left;
+}
+
+.custom-file label,
+input {
+  height: 100%;
+}
+
+.setButtons {
+  margin-top: 67px;
+}
+
+.alert-info {
+  text-align: left;
+}
+
+.containerText {
+  margin-bottom: 7px;
+}
+
+.containerText button {
+  height: 34px;
+}
+
+.containerText h3 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.anotherType {
+  display: inline-block;
+  padding-top: 4px;
+  margin-bottom: 5px;
+}

@@ -1,0 +1,26 @@
+.admin {
+  margin: 0 auto;
+  margin-top: 15vh;
+  min-height: 90vh;
+  width: 100%;
+  max-width: 1400px;
+
+}
+
+.adminLinkBlock {
+  margin-bottom: 50px;
+}
+
+.adminLink {
+  color: var(--main-color);
+  background: none;
+  border: 1px solid var(--main-color);
+  margin-bottom: 5px;
+  font-family: "JosefinSans-Bold", sans-serif;
+  text-align: center;
+}
+
+.activeAdminLink {
+  color: black;
+  background: var(--main-color);
+}

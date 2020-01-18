@@ -1,0 +1,105 @@
+.intro {
+  height: 90vh;
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  margin-top: 10vh;
+}
+
+.video {
+  position: relative;
+}
+
+.video__media {
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.main {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 12%;
+  position: relative;
+  z-index: 10;
+}
+
+.main-text {
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 10;
+}
+
+.main-text p {
+  font-family: 'NothingYouCouldDo', sans-serif;
+  font-size: 40px;
+  color: var(--main-color);
+}
+
+.main-text h1 {
+  font-family: "JosefinSans-Bold";
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+button {
+  display: inline-block;
+  vertical-align: bottom;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #c80000;
+  padding: 16px 41px 14px;
+  line-height: 16px;
+  color: #fefefe;
+  background: #c80000;
+  border-radius: 22px;
+  font-weight: 700;
+  transition: .3s all;
+}
+
+button:hover {
+  background: none;
+  color: white;
+}
+
+@media screen and (max-width:768px) {
+  button {
+    padding: 12px 25px 12px;
+    line-height: 12px;
+  }
+
+  .main-text {
+    width: 85%;
+  }
+
+}
+
+@media screen and (max-width:375px) {
+  .main-text {
+    width: 70%;
+  }
+
+  .main {
+    margin-top: 7%;
+  }
+
+  .main-text h1 {
+    font-size: 35px;
+  }
+}
+
+@media screen and (min-width:1920px) {
+  .video__media {
+    width: 100%;
+  }
+}

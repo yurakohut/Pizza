@@ -1,0 +1,81 @@
+<div class="basket">
+  <div class="basket-content container">
+    <h2 *ngIf="!orderCheck">To order</h2>
+    <div class="basket-order" *ngFor="let product of localProducts; let i=index">
+      <div class="basket-leftInfo">
+        <fa-icon [icon]="faTimes" class="fa-2x deletePoduct" (click)="deletePoduct(product)"></fa-icon>
+        <img src="{{product.image}}" alt="productImage">
+        <p>{{product.name}}</p>
+      </div>
+      <div class="basket-rightInfo">
+        <span class="order">₴<span class="price">{{product.price * product.count}}</span></span>
+        <span class="countProduct">
+          <button type="button" (click)="countProductsInc(product)">+</button>
+          <input type="text" [value]='product.count' maxlength="3" (keyup)='checkCountProduct($event, product)'>
+          <button type="button" (click)="countProductsDec(product)">-</button>
+        </span>
+      </div>
+    </div>
+
+    <div class="together">
+      <div *ngIf="orderCheck">
+        <h2>No orders yet</h2>
+        <button mat-raised-button class="btn btn-primary" [routerLink]="['/menu/pizza']">Order now</button>
+      </div>
+      <h2 *ngIf="!orderCheck">Together: ₴{{orderSum}}</h2>
+    </div>
+  </div>
+  <div class="orderStepper" *ngIf="!orderCheck">
+    <div class="container">
+      <mat-vertical-stepper linear #stepper>
+        <mat-step [stepControl]="firstFormGroup" state="assignment_ind
+            ">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Fill out your name</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="First name" formControlName="firstCtrl" required pattern="[a-zA-Z\s]{2,}">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext class="btn btn-primary">Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" state="home">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Fill out your address</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Address" formControlName="secondCtrl" required
+                pattern="[a-zA-Z0-9,\.\s\\/]{6,}">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext class="btn btn-primary">Next</button>
+              <button mat-button matStepperPrevious class="btn btn-dark">Back</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup" state="phone">
+          <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Fill out your phone</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Phone" pattern="\+38\(0\d{2}\)\s\d{3}-\d{4}" formControlName="thirdCtrl"
+                [textMask]="{mask: mask}" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext class="btn btn-primary">Next</button>
+              <button mat-button matStepperPrevious class="btn btn-dark">Back</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step state="stars">
+          <ng-template matStepLabel>Order</ng-template>
+          <div class="mt-2">
+            <button mat-button class="btn btn-success" (click)="setOrder()">Order</button>
+            <button mat-button matStepperPrevious class="btn btn-dark">Back</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </div>
+</div>
+
+<simple-notifications [options]="options"></simple-notifications>

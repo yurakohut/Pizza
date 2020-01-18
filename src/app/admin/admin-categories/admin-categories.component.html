@@ -1,0 +1,45 @@
+<div class="container">
+  <form>
+    <div class="form-group">
+      <label for="categoryName">Category name</label>
+      <input type="text" [(ngModel)]="categoryName" name="categoryName" (keyup)='checkCategoryValue($event)'
+        class="form-control" id="categoryName" placeholder="Type here..">
+    </div>
+    <button type="button" [disabled]="!categoryButtonAddCheck" class="btn btn-success col-2"
+      (click)="setData()">Add</button>
+  </form>
+  <br>
+  <table class="table table-hover table-bordered table-responsive">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" class="col-md-6">Name</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories; let i=index">
+        <th scope="row">
+          {{i+1}}
+        </th>
+        <td class="col-md-6">
+          {{category.name}}
+        </td>
+        <td *ngIf="category.name !=='pizza'">
+          <button type="button" class="btn btn-danger"
+            (click)="deleteData(category, deleteCategoryModal)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #deleteCategoryModal>
+  <div class="modal-body text-center">
+    <p class="mb-2">Do you want to delete this category?
+      All products in this category will be deleted</p>
+    <button mat-raised-button class="btn btn-danger mr-2" (click)="confirmDeleteCategory()">Yes</button>
+    <button mat-raised-button class="btn btn-primary" (click)="decline()">No</button>
+  </div>
+</ng-template>
+
+<simple-notifications [options]="options"></simple-notifications>

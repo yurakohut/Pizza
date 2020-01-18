@@ -1,0 +1,120 @@
+.menu {
+  margin-top: 10vh;
+}
+
+.menu-text {
+  text-align: center;
+  width: 100%;
+}
+
+.categories button {
+  font-family: "Poppins-Regular", serif;
+  padding: 0.5rem 1rem;
+  font-size: 18px;
+  font-weight: 400;
+  background: none;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  outline: none;
+  transition: .6s all;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 10px;
+}
+
+.categories button:hover,
+.categories .active {
+  background: var(--main-color);
+  color: black;
+}
+
+
+.categories {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.products {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background: url("/assets/images/bg.jpg") no-repeat center center;
+}
+
+.card {
+  text-align: center;
+  font-family: "Poppins-Regular", sans-serif;
+  margin: 10px;
+  background: var(--main-color);
+  border-radius: 10px;
+  transition: .4s all;
+  border: none;
+}
+
+.card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 4)
+}
+
+.card p {
+  margin-bottom: 10px;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.description {
+  min-height: 60px;
+  font-family: "Poppins-Italic", sans-serif;
+}
+
+.description p {
+  font-family: "Poppins-Italic", sans-serif;
+}
+
+.countProduct input {
+  width: 35px;
+  height: 35px;
+  background: none;
+  outline: none;
+  border: 1px solid #d49119;
+  border-radius: 3px;
+  text-align: center;
+  margin: 0 5px;
+}
+
+.countProduct button {
+  border: none;
+  font-weight: bold;
+  outline: none;
+  background: none;
+  color: red;
+  transform: scale(1.8);
+  transition: .3s all;
+}
+
+.countProduct button:hover {
+  color: black;
+  cursor: pointer;
+}
+
+.order {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.order {
+  font-size: 20px;
+}
+
+.order .price {
+  color: red;
+}

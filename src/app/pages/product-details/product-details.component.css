@@ -1,0 +1,39 @@
+.productDetails {
+  margin-top: 15vh;
+  min-height: 90vh;
+  font-family: 'Poppins-Regular', sans-serif;
+}
+
+.card {
+  margin: 0 auto;
+  background: var(--main-color);
+}
+
+.productImage img {
+  width: 100%;
+  height: 100%;
+}
+
+ul {
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+  padding: 5px 0;
+}
+
+
+.card .price {
+  color: red;
+  font-size: 23px;
+}
+
+.card .name {
+  font-size: 28px;
+  margin-right: 15px;
+}
+
+.card .description {
+  font-family: 'Poppins-Italic', sans-serif;
+}

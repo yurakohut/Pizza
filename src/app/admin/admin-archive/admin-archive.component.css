@@ -1,0 +1,12 @@
+.panelTitle {
+  width: 60%;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.orderDescription li {
+  list-style-type: none;
+}

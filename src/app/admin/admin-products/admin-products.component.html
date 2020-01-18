@@ -1,0 +1,131 @@
+<div class="container">
+
+  <div class="addButton row justify-content-center">
+    <button type="button" class="btn btn-primary col-12 col-sm-6 col-lg-4 col-xl-2"
+      (click)="openProductModal(productModal)">Add
+      product</button>
+  </div>
+  <div class="anotherButtons row justify-content-center">
+    <button type="button" class="col-12 col-sm-6 col-lg-3 col-xl-2" [ngClass]="{active: isActive(category.name)}"
+      (click)="selectCategory(category.name)" *ngFor="let category of categories; let i=index"
+      [routerLink]="['/admin/products', category.name]">{{category.name}}</button>
+  </div>
+
+  <ng-template #productModal>
+    <div class="modal-body text-center">
+      <form>
+        <div class="form-group">
+          <label for="productCategory">Category</label>
+          <select class="form-control" id="productCategory" [disabled]="editDisabled" [(ngModel)]="productCategory"
+            name="productCategory">
+            <option value="" selected disabled hidden>Choose here</option>
+            <option *ngFor="let category of categories; let i = index">{{category?.name}}</option>
+          </select>
+        </div>
+        <div class="form-group" *ngIf="productCategory">
+          <label for="productName">Name</label>
+          <input [(ngModel)]="productName" [disabled]="editDisabled" name="productName" type="text" class="form-control"
+            id="productName">
+        </div>
+        <div class="form-group" *ngIf="productName">
+          <label for="productDescription">Description</label>
+          <input [(ngModel)]="productDescription" name="productDescription" type="text" class="form-control"
+            id="productDescription">
+        </div>
+        <div class="form-group" *ngIf="productDescription">
+          <label for="productPrice">Price</label>
+          <input [(ngModel)]="productPrice" name="productPrice" type="number" class="form-control" id="productPrice">
+        </div>
+        <div class="form-group" *ngIf="productCategory == 'pizza'">
+          <label for="productSize">Size (without 'inc')</label>
+          <input [(ngModel)]="productSize" name="productSize" type="number" class="form-control" id="productSize"
+            placeholder="not necessary">
+        </div>
+        <div class="form-group" *ngIf="productCategory == 'pizza'">
+          <label for="productWeight">Weight (without 'gr')</label>
+          <input [(ngModel)]="productWeight" name="productWeight" type="number" class="form-control" id="productWeight"
+            placeholder="not necessary">
+        </div>
+        <div class="form-group" *ngIf="productPrice>0 && productDescription && productName">
+          <label for="productFile">Image</label>
+          <div class="custom-file">
+            <input type="file" class="form-control" (change)="upload($event)" accept=".png,.jpg" id="productFile" />
+            <label class="custom-file-label" for="productFile">Choose file..</label>
+            <br>
+            <div class="progress">
+              <div *ngIf="progress" class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <br>
+            <div *ngIf="addProductCheck && !editProductImgBoolean">
+              <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+                File uploaded: <a [href]="downloadSrc" target="_blank">{{downloadSrc}}</a>
+                <div> <img src="{{productImage}}" alt="product image"></div>
+              </div>
+            </div>
+            <div *ngIf="editProductImgBoolean" class="alert alert-info" role="alert">
+              <a [href]="editSrc" target="_blank">{{editSrc}}</a>
+              <div> <img src="{{productImage}}" alt="product image"></div>
+            </div>
+          </div>
+        </div>
+        <div class="buttons">
+          <div class="setButtons">
+            <button *ngIf="addProductCheck && productDescription && productName && productPrice>0" type="button"
+              class="btn btn-success mr-2" (click)="setData()">Add</button>
+            <button type="button" class="btn btn-dark" (click)="cancelData()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <br>
+  <div class="form-group">
+    <input [(ngModel)]="searchProduct" name="searchProduct" type="text" class="form-control" placeholder="Search.."
+      id="searchProduct">
+  </div>
+
+  <table class="table table-hover table-bordered table-responsive">
+    <thead class="thead-light">
+      <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col" class="col-md-4">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col" class="col-md-4">Image</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products | filter:searchProduct | category:searchCategory ; let i=index"
+        class="text-center">
+        <th scope="row" class="align-middle">{{i+1}}</th>
+        <td class="align-middle">{{product.name}}</td>
+        <td class="align-middle">{{product.category}}</td>
+        <td class="align-middle">{{product.description}}</td>
+        <td class="align-middle">{{product.price}}</td>
+        <td> <img src="{{product?.image}}" alt="Product image"></td>
+        <td class="align-middle">
+          <button type="button" class="btn btn-warning" (click)="editData(product, productModal)">Edit</button>
+        </td>
+        <td class="align-middle">
+          <button type="button" class="btn btn-danger" (click)="deleteData(product, warningModal)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <simple-notifications [options]="options" class="notifications"></simple-notifications>
+
+</div>
+<ng-template #warningModal>
+  <div class="modal-body text-center">
+    <p class="mb-2">Do you want to delete this product?</p>
+    <button mat-raised-button class="btn btn-danger mr-2" (click)="confirmDeleteProduct()">Yes</button>
+    <button mat-raised-button class="btn btn-primary" (click)="decline()">No</button>
+  </div>
+</ng-template>
