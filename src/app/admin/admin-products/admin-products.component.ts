@@ -65,8 +65,6 @@ export class AdminProductsComponent implements OnInit {
           ...product.payload.doc.data()
         };
       });
-      console.log(this.products);
-
     });
     this.categoryService.getData().subscribe(actionArray => {
       this.categories = actionArray.map(category => {
@@ -118,7 +116,6 @@ export class AdminProductsComponent implements OnInit {
       this.modalRef.hide();
       this.resetData();
       this.notificationsService.infoNotification(`${newProduct.name} was successfully edited`);
-      this.searchProduct = '';
     }
     else {
       //Перевірка на унікальність назви продукту

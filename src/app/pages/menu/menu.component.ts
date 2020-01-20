@@ -10,6 +10,7 @@ import { PaginatorService } from 'src/app/shared/services/paginator.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'app-menu',
@@ -76,6 +77,7 @@ export class MenuComponent implements OnInit {
     this.filterCategoryName = name;
     this.filterProducts = this.products.filter(val => val.category === this.filterCategoryName.trim());
     this.filterProducts.length > this.productPerPage ? this.checkPaginator = true : this.checkPaginator = false;
+    this.paginatorService.changePage(1);
   };
 
   countProductsInc(product): void {
@@ -124,7 +126,7 @@ export class MenuComponent implements OnInit {
       this.isActiveModal = this.checkWindowShow();
     }
   };
-  
+
   checkWindowShow(): boolean {
     return this.localStorageService.getDataLocalStorage('ModalWindowHide').length > 0 ? true : false;
   };
