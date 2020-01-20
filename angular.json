@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "myProject": {
+    "pizza": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:class": {
@@ -35,7 +35,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/myProject",
+            "outputPath": "dist/pizza",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -93,18 +93,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "myProject:build"
+            "browserTarget": "pizza:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "myProject:build:production"
+              "browserTarget": "pizza:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "myProject:build"
+            "browserTarget": "pizza:build"
           }
         },
         "test": {
@@ -144,16 +144,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "myProject:serve"
+            "devServerTarget": "pizza:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "myProject:serve:production"
+              "devServerTarget": "pizza:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "myProject"
+  "defaultProject": "pizza"
 }
