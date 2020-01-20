@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("/assets/images/service-bg.gif") no-repeat center center fixed;
+  background: url("https://firebasestorage.googleapis.com/v0/b/myproject-c5d44.appspot.com/o/Pizza%20backdround%2Fservice-bg.gif?alt=media&token=3506d784-014f-4c20-abef-c213adb01f13") no-repeat center center fixed;
   background-size: cover;
   min-height: 100vh;
 }

@@ -11,10 +11,14 @@
           <span class="description">{{product.description}}</span>
         </li>
         <li class="card-text" *ngIf="product.size">
-          <img src="assets/images/size.png" alt="size"><span> {{product.size}} inc</span>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/myproject-c5d44.appspot.com/o/Pizza%20backdround%2Fsize.png?alt=media&token=3bdfc083-88cb-45a8-9c67-109e0f50107c"
+            alt="size"><span> {{product.size}} inc</span>
         </li>
         <li class="card-text" *ngIf="product.weight">
-          <img src="assets/images/scale.png" alt="weight"><span> {{product.weight}} gr</span>
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/myproject-c5d44.appspot.com/o/Pizza%20backdround%2Fscale.png?alt=media&token=4fbefc95-c1ce-46bb-8437-f76bfe8eff93"
+            alt="weight"><span> {{product.weight}} gr</span>
         </li>
         <li><button mat-raised-button color='primary' (click)="goBack()">Back</button></li>
       </ul>

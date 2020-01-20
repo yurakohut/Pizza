@@ -135,9 +135,15 @@ export class AdminProductsComponent implements OnInit {
       };
     };
   };
+
   cancelData(): void {
     this.modalRef.hide();
     this.resetData();
+  };
+
+  filterCategory(): void {
+    this.productSize = null;
+    this.productWeight = null;
   };
   resetData(): void {
     this.productCategory = '';

@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'Pizza Restaurant';
   ngOnInit() {
     AOS.init({
-      // once: true
+      once: true
     });
   }
   onActivate(event) {

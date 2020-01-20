@@ -16,8 +16,8 @@
       <form>
         <div class="form-group">
           <label for="productCategory">Category</label>
-          <select class="form-control" id="productCategory" [disabled]="editDisabled" [(ngModel)]="productCategory"
-            name="productCategory">
+          <select class="form-control" (change)="filterCategory()" id="productCategory" [disabled]="editDisabled"
+            [(ngModel)]="productCategory" name="productCategory">
             <option value="" selected disabled hidden>Choose here</option>
             <option *ngFor="let category of categories; let i = index">{{category?.name}}</option>
           </select>

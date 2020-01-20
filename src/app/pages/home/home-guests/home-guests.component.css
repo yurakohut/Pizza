@@ -19,7 +19,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url("/assets/images/service-bg2.jpg") no-repeat center center fixed;
+  background: url("https://firebasestorage.googleapis.com/v0/b/myproject-c5d44.appspot.com/o/Pizza%20backdround%2Fservice-bg2.jpg?alt=media&token=7c4292e5-a9cc-4a7a-b08b-d4ca79b218a4") no-repeat center center fixed;
   background-size: cover;
   font-family: "Poppins-Regular", sans-serif;
 }

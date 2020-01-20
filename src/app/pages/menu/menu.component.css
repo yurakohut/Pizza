@@ -42,7 +42,7 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  background: url("/assets/images/bg.jpg") no-repeat center center;
+  background: url("https://firebasestorage.googleapis.com/v0/b/myproject-c5d44.appspot.com/o/Pizza%20backdround%2Fbg.jpg?alt=media&token=d7edead6-eadb-49e1-b823-4aa243013cbc") no-repeat center center;
 }
 
 .card {
